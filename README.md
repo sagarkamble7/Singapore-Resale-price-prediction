@@ -1,3 +1,3 @@
 # Singapore-Resale-price-prediction
 
-#### Skills : Data Wrangling, EDA, Model Building, Model, Deployment
+#### Technical Skills : Data Wrangling, EDA, Model Building, Model, Deployment
