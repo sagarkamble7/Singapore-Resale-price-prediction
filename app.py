@@ -61,7 +61,7 @@ def predict_price(year, town, flat_type, flr_area_sqm, flat_model, stry_start, s
     import os
 
     def download_file_from_google_drive(file_id, destination):
-        URL = f'https://drive.google.com/uc?export=download&id={"1Wy4obCQ7gEWbdQx9qhyzoiKNudqB9Qgc"}'
+        URL = f'https://drive.google.com/uc?export=download&id={file_id}'
         response = requests.get(URL, stream=True)
         
         if response.status_code == 200:
@@ -72,8 +72,8 @@ def predict_price(year, town, flat_type, flr_area_sqm, flat_model, stry_start, s
             raise Exception(f"Failed to download file. Status code: {response.status_code}")
 
     # Replace with your file ID and destination path
-    file_id = 'YOUR_FILE_ID'
-    destination = 'model/file.pkl'
+    file_id = '1Wy4obCQ7gEWbdQx9qhyzoiKNudqB9Qgc'
+    destination = 'Resale_Flat_Prices_Model_1.pkl'
     download_file_from_google_drive(file_id, destination)
 
     # Validate the file
