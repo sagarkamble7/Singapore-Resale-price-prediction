@@ -58,8 +58,7 @@ def predict_price(year, town, flat_type, flr_area_sqm, flat_model, stry_start, s
     lese_coms_dt = int(les_coms_dt)
 
     # URL of the model file in cloud storage
-    url = 'https://drive.google.com/file/d/1Wy4obCQ7gEWbdQx9qhyzoiKNudqB9Qgc/view?usp=drive_link'
-
+    url = 'https://drive.google.com/uc?export=download&id=1Wy4obCQ7gEWbdQx9qhyzoiKNudqB9Qgc'
     # Path to save the downloaded model
     model_path = "Resale_Flat_Prices_Model_1.pkl"
 
