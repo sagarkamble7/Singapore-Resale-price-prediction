@@ -57,27 +57,38 @@ def predict_price(year, town, flat_type, flr_area_sqm, flat_model, stry_start, s
     rem_les_month = int(re_les_month)
     lese_coms_dt = int(les_coms_dt)
 
-    # URL of the model file in cloud storage
-    url = 'https://drive.google.com/uc?export=download&id=1Wy4obCQ7gEWbdQx9qhyzoiKNudqB9Qgc'
+    import requests
+    import os
 
-    # Path to save the downloaded model
-    model_path = "Resale_Flat_Prices_Model_1.pkl"
-
-    # Function to download the model
-    def download_model(url, save_path):
-        if not os.path.exists(save_path):
-            st.write(f"Downloading model from {url}...")
-            urllib.request.urlretrieve(url, save_path)
-            st.write(f"Model downloaded and saved as {save_path}.")
+    def download_file_from_google_drive(file_id, destination):
+        URL = f'https://drive.google.com/uc?export=download&id={"1Wy4obCQ7gEWbdQx9qhyzoiKNudqB9Qgc"}'
+        response = requests.get(URL, stream=True)
+        
+        if response.status_code == 200:
+            with open(destination, 'wb') as f:
+                f.write(response.content)
+            print(f"Downloaded file to {destination}")
         else:
-            st.write("Model already downloaded.")
+            raise Exception(f"Failed to download file. Status code: {response.status_code}")
 
-    # Download the model
-    download_model(url, model_path)
+    # Replace with your file ID and destination path
+    file_id = 'YOUR_FILE_ID'
+    destination = 'model/file.pkl'
+    download_file_from_google_drive(file_id, destination)
 
-    # Load the model
-    with open(model_path, 'rb') as model_file:
-        model = pickle.load(model_file)
+    # Validate the file
+    if os.path.getsize(destination) == 0:
+        raise Exception("Downloaded file is empty.")
+
+    # Attempt to load the model
+    import pickle
+    try:
+        with open(destination, 'rb') as model_file:
+            model = pickle.load(model_file)
+        print("Model loaded successfully.")
+    except Exception as e:
+        raise Exception(f"Error loading model: {e}")
+
 
     # User data
     user_data = np.array([[year_1, town_2, flt_ty_2, flr_ar_sqm_1,
