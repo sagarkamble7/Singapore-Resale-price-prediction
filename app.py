@@ -58,7 +58,7 @@ def predict_price(year, town, flat_type, flr_area_sqm, flat_model, stry_start, s
     lese_coms_dt = int(les_coms_dt)
 
     # URL of the model file in cloud storage
-    url = 'https://drive.google.com/uc?export=download&id=1Wy4obCQ7gEWbdQx9qhyzoiKNudqB9Qgc'
+    url = 'https://drive.google.com/file/d/1Wy4obCQ7gEWbdQx9qhyzoiKNudqB9Qgc/view?usp=drive_link'
 
     # Path to save the downloaded model
     model_path = "Resale_Flat_Prices_Model_1.pkl"
@@ -78,6 +78,12 @@ def predict_price(year, town, flat_type, flr_area_sqm, flat_model, stry_start, s
     # Load the model
     with open(model_path, 'rb') as model_file:
         model = pickle.load(model_file)
+        
+    try:
+        with open(model_path, 'rb') as model_file:
+            model = pickle.load(model_file)
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
 
     # User data
     user_data = np.array([[year_1, town_2, flt_ty_2, flr_ar_sqm_1,
@@ -192,5 +198,5 @@ elif select == "Price Prediction":
                                   stry_start, stry_end, re_les_year, re_les_month, les_coms_dt)
 
             if price is not None:
-                st.write(f"**Estimated Resale Price: S$ {price}**")
+                st.write(f"**Estimated Resale Price: $ {price}**")
 
