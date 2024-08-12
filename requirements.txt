@@ -75,5 +75,5 @@ watchdog==4.0.1
 wcwidth==0.2.13
 xgboost==2.1.1
 requests
-D:\Singapore resale prioce\Resale_Flat_Prices_Model_1_linear_regtression.pkl
+
 
